@@ -1,0 +1,99 @@
+<html>
+<head>
+  <title>RPS</title>
+</head>
+<body>
+<script type="text/javascript">
+
+var computerPlay = function() {
+  var choiceNum = Math.floor(Math.random() * 3);
+  switch(choiceNum){
+  case 0:
+    return("rock");
+    break;
+  case 1:
+    return("paper");
+    break;
+  default:
+    return("scissors");
+}
+};
+
+var playRound = function (playerSelection, computerSelection){
+if (playerSelection == "rock"){
+  switch (computerSelection){
+  case 'paper':
+    return("You lose! Paper beats Rock!");
+    break;
+  case 'rock':
+    return("Tie! You both chose Rock!");
+    break;
+  default:
+    return("You win! Rock beats Scissors!");
+    break;
+  }
+}
+else if (playerSelection == "paper") {
+  switch (computerSelection){
+  case 'scissors':
+    return("You lose! Scissors beats Paper!");
+    break;
+  case 'paper':
+    return("Tie! You both chose Paper!");
+    break;
+  default:
+    return("You win! Paper beats Rock!");
+    break;
+  }
+}
+else {
+  switch (computerSelection){
+  case 'rock':
+    return("You lose! Rock beats Scissors!");
+    break;
+  case 'scissors':
+    return("Tie! You both chose Scissors!");
+    break;
+  default:
+    return("You win! Scissors beats Paper!");
+    break;
+  }
+}
+};
+
+var game = function (){
+var pscore = 0;
+var cscore = 0;
+for (var round = 1; round < 6; round++) {
+
+  var playerSelection = window.prompt("Choose Rock, Paper, or Scissors").toLowerCase();
+
+  var computerSelection = computerPlay();
+	var currentround = playRound(playerSelection, computerSelection);
+  if ((currentround == "You win! Rock beats Scissors!") || (currentround == "You win! Paper beats Rock!") || (currentround == "You win! Scissors beats Paper!")){
+    pscore=pscore +1;
+  }
+  else if ((currentround == "You lose! Rock beats Scissors!") || (currentround == "You lose! Scissors beats Paper!")  || (currentround == "You lose! Paper beats Rock!")){
+    cscore++;
+  }
+console.log(currentround);
+console.log("You:"+ pscore + "  Computer:"+ cscore);
+}
+if (pscore>cscore){
+  console.log("You win!");
+}
+else if (pscore == cscore){
+  console.log("Tie!");
+}
+else {
+  console.log("You suck!");
+}
+};
+
+game();
+
+
+
+</script>
+</body>
+</html>
